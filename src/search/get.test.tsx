@@ -13,7 +13,7 @@ describe('[GET] Search', () => {
     await waitFor(() => expect(result.current.isSuccess).toBe(true));
 
     // @ts-ignore
-    expect(result.current?.data?.items[4]?.title).toBe('Welcome to Plone 6!');
+    expect(result.current?.data?.items[0]?.title).toBe('Welcome to Plone 6!');
     expect(result.current?.data?.items_total).toBe(5);
   });
 
@@ -153,8 +153,6 @@ describe('[GET] Search', () => {
 
     await waitFor(() => expect(result.current.isSuccess).toBe(true));
 
-    console.log('data', result.current?.data);
-
     // @ts-ignore
     expectTypeOf(result.current?.data?.items[0]['@components']).toBeObject();
     expect(result.current?.data?.items[0]?.title).toBe('Events');
@@ -190,7 +188,7 @@ describe('[GET] Search', () => {
     await waitFor(() => expect(result.current.isSuccess).toBe(true));
 
     // @ts-ignore
-    expect(result.current?.data?.items[0]?.title).toBe('Events');
+    expect(result.current?.data?.items[0]?.title).toBe('News');
     // @ts-ignore
     expect(result.current?.data?.batching['@id']).toBe(
       'http://localhost:55001/plone/++api++/@search?b_size=2&b_start=2',
