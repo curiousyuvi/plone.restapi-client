@@ -102,6 +102,25 @@ describe('[GET] Search', () => {
     expect(result.current?.data?.items_total).toBe(4);
   });
 
+  test('Hook - searchableText && searchPaths', async () => {
+    const searchPaths = { query: ['/plone/news', '/plone/events'], depth: 2 };
+    const searchableText = 'news';
+
+    const { result } = renderHook(
+      () => useQuery(getSearchQuery({ searchPaths, searchableText })),
+      {
+        wrapper: createWrapper(),
+      },
+    );
+
+    await waitFor(() => expect(result.current.isSuccess).toBe(true));
+
+    // @ts-ignore
+    expect(result.current?.data?.items[0]?.description).toBe('Site News');
+    expect(result.current?.data?.items[1]?.title).toBe('News');
+    expect(result.current?.data?.items_total).toBe(2);
+  });
+
   test('Hook - metaDataFields', async () => {
     const metaDataFields = ['modified', 'created'];
     const { result } = renderHook(
