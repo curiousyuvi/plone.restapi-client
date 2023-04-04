@@ -6,7 +6,7 @@ type SearchPaths = {
   depth: number;
 };
 
-type SearchArgs = {
+export type SearchArgs = {
   path?: string;
   sortOn?: string | string[];
   sortOrder?: 'ascending' | 'descending' | 'reverse';
